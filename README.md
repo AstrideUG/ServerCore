@@ -1,1 +1,1 @@
-"# ServerCore" 
+# ServerCore

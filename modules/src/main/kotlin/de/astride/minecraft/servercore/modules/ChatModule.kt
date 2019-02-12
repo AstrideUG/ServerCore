@@ -20,18 +20,15 @@ import org.bukkit.event.player.AsyncPlayerChatEvent
  */
 class ChatModule : Module, Listener {
 
-    private var luckPermsApi: LuckPermsApi? = null
+    private var luckPermsApi: LuckPermsApi!!
+    get() = Bukkit.getServicesManager().getRegistration(LuckPermsApi::
+    class.java)?.provider
 
     override val description: ModuleDescription =
         ModuleDescription("ChatModule", "1.0", "DevSnox", "Definiert die Darstellung der Nachrichten!", true)
 
     override fun start() {
-        registerLuckPerms()
         Bukkit.getPluginManager().registerEvents(this, Bukkit.getPluginManager().getPlugin("DarkFrame"))
-    }
-
-    private fun registerLuckPerms() {
-        this.luckPermsApi = Bukkit.getServicesManager().getRegistration(LuckPermsApi::class.java)?.provider
     }
 
     @EventHandler(priority = EventPriority.HIGH)

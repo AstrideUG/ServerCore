@@ -1,0 +1,6 @@
+name: ServerCore
+main: de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
+version: 1.0-SNAPSHOT
+authors: [LartyHD]
+description: ServerCore is a Core Plugin.
+website: astride.de

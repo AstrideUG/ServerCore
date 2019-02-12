@@ -1,5 +1,5 @@
 rootProject.name = "ServerCore"
-rootProject.buildFileName = "build.gradle.kts"
+rootProject.buildFileName = "build.gradle"
 
 val subs = arrayOf(
     //    "api",

@@ -31,7 +31,7 @@ class ChatModule : Module, Listener {
     }
 
     private fun registerLuckPerms() {
-        this.luckPermsApi = Bukkit.getServicesManager().getRegistration(LuckPermsApi::class.java)?.provider;
+        this.luckPermsApi = Bukkit.getServicesManager().getRegistration(LuckPermsApi::class.java)?.provider
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -40,8 +40,8 @@ class ChatModule : Module, Listener {
 
         var message = event.message
 
-        if (!player.hasPermission("skypvp.chat.color.all")) {
-            if (player.hasPermission("skypvp.chat.color")) {
+        if (!player.hasPermission("chatmodule.color.all")) {
+            if (player.hasPermission("chatmodule.color.basic")) {
                 message = ChatColor.translateAlternateColorCodes('&', message)
                 message = message.replace("\u00A7((?i)[fk-or])".toRegex(), "")
             } else {
@@ -63,7 +63,7 @@ class ChatModule : Module, Listener {
             "owner", "admin" -> stringBuilder.append("§4§l")
             "developer" -> stringBuilder.append("§3§l")
             else -> {
-                if (player.hasPermission("skyhype.chat.team")) stringBuilder.append("§e§l")
+                if (player.hasPermission("chatmodule.color.team")) stringBuilder.append("§e§l")
                 else stringBuilder.append("§7")
             }
         }

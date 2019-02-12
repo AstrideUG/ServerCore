@@ -37,7 +37,7 @@ class ChatModule : Module, Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.HIGH)
     fun onChat(event: AsyncPlayerChatEvent) {
         val player = event.player
 

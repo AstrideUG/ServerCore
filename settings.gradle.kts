@@ -4,6 +4,7 @@ rootProject.buildFileName = "build.gradle"
 val subs = arrayOf(
     //    "api",
     "spigot",
+    "modules",
 //    "sponge",
 //    "bungee",
     "common"//,

@@ -2,6 +2,7 @@ package de.astride.minecraft.servercore.modules
 
 import me.lucko.luckperms.api.Contexts
 import me.lucko.luckperms.api.LuckPermsApi
+import net.darkdevelopers.darkbedrock.darkness.general.functions.toNonNull
 import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
 import org.bukkit.Bukkit
@@ -20,9 +21,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent
  */
 class ChatModule : Module, Listener {
 
-    private var luckPermsApi: LuckPermsApi!!
-    get() = Bukkit.getServicesManager().getRegistration(LuckPermsApi::
-    class.java)?.provider
+    private val luckPermsApi: LuckPermsApi
+        get() = Bukkit.getServicesManager().getRegistration(LuckPermsApi::class.java)?.provider.toNonNull("LuckPermsAPI Service can not be null")
 
     override val description: ModuleDescription =
         ModuleDescription("ChatModule", "1.0", "DevSnox", "Definiert die Darstellung der Nachrichten!", true)
@@ -48,11 +48,11 @@ class ChatModule : Module, Listener {
 
         val stringBuilder = StringBuilder()
 
-        val group = luckPermsApi?.getGroup(luckPermsApi?.getUser(player.uniqueId)?.primaryGroup)
+        val group = luckPermsApi.getGroup(luckPermsApi.getUser(player.uniqueId)?.primaryGroup ?: "")
 
 
         val prefix =
-            luckPermsApi?.userManager.getUser(player.uniqueId)?.cachedData.getMetaData(Contexts.allowAll()).prefix
+            luckPermsApi.userManager.getUser(player.uniqueId)?.cachedData?.getMetaData(Contexts.allowAll())?.prefix
 
         stringBuilder.append(prefix).append("§8- ").append(prefix?.substring(0, 2)).append(player.name).append(" §8» ")
 

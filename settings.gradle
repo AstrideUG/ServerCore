@@ -1,0 +1,11 @@
+rootProject.name = "ServerCore"
+
+include(
+        "spigot",
+        "modules",
+        "common"
+)
+
+findProject(":spigot")?.name = "${rootProject.name}-Spigot"
+findProject(":modules")?.name = "${rootProject.name}-Modules"
+findProject(":common")?.name = "${rootProject.name}-Common"

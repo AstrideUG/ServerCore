@@ -1,5 +1,3 @@
-package de.astride.minecraft.servercore.modules
-
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import me.lucko.luckperms.api.Group
 import me.lucko.luckperms.api.LuckPermsApi

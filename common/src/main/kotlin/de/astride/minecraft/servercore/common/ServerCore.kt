@@ -15,7 +15,11 @@ class ServerCore(private val dataFolder: File) {
 
     private var moduleManager: ClassJavaModuleManager by Delegates.notNull()
 
-    fun start() {
+    init {
+        start()
+    }
+
+    private fun start() {
         //Old Module System
         println("Enable Old Module System")
         moduleManager = ClassJavaModuleManager(File("$dataFolder${separator}modules${separator}old"))

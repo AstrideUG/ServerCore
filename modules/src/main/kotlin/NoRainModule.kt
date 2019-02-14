@@ -19,7 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin
 class NoRainModule : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)) {
 
     override val description: ModuleDescription =
-        ModuleDescription(javaClass.simpleName, "1.3", "Lars Artmann | LartyHD", "This modules block rain")
+        ModuleDescription(javaClass.canonicalName, "1.3", "Lars Artmann | LartyHD", "This modules block rain")
 
     private val worlds by lazy {
         try {

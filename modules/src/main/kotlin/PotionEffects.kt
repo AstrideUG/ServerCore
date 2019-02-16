@@ -18,7 +18,7 @@ import org.bukkit.potion.PotionEffectType
 /**
  * @author Lars Artmann | LartyHD
  * Created by Lars Artmann | LartyHD on 15.02.2019 08:37.
- * Current Version: 1.0 (15.02.2019 - 15.02.2019)
+ * Current Version: 1.0 (15.02.2019 - 16.02.2019)
  */
 class PotionEffects : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)) {
 
@@ -26,20 +26,7 @@ class PotionEffects : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlug
         ModuleDescription(javaClass.canonicalName, "1.0", "Lars Artmann | LartyHD", "")
 
     private lateinit var worlds: List<String>
-    private val effects = GsonService.loadAsJsonArray(ConfigData(description.folder, "effects.json")).map {
-        val effect = it.asJsonObject
-        val type = try {
-            @Suppress("DEPRECATION")
-            PotionEffectType.getById(effect["effect"]!!.asInt)
-        } catch (e: Exception) {
-            PotionEffectType.getByName(effect["effect"]!!.asString)
-        }
-        val duration = effect["duration"]?.asInt ?: Int.MAX_VALUE
-        val amplifier = effect["amplifier"]?.asInt ?: 0
-        val ambient = effect["ambient"]?.asBoolean ?: true
-        val particles = effect["has-particles"]?.asBoolean ?: true
-        PotionEffect(type, duration, amplifier, ambient, particles)
-    }
+    private lateinit var effects: Collection<PotionEffect>
 
     override fun load() {
         worlds = try {
@@ -48,6 +35,21 @@ class PotionEffects : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlug
         } catch (ex: ClassCastException) {
             emptyList()
         }
+        effects = GsonService.loadAsJsonArray(ConfigData(description.folder, "effects.json")).map {
+            val effect = it.asJsonObject
+            val type = try {
+                @Suppress("DEPRECATION")
+                PotionEffectType.getById(effect["effect"]!!.asInt)
+            } catch (e: Exception) {
+                PotionEffectType.getByName(effect["effect"]!!.asString)
+            }
+            val duration = effect["duration"]?.asInt ?: Int.MAX_VALUE
+            val amplifier = effect["amplifier"]?.asInt ?: 0
+            val ambient = effect["ambient"]?.asBoolean ?: true
+            val particles = effect["has-particles"]?.asBoolean ?: true
+            PotionEffect(type, duration, amplifier, ambient, particles)
+        }
+
     }
 
     @EventHandler

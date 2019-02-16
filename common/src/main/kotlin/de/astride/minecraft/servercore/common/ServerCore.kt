@@ -27,7 +27,7 @@ class ServerCore(private val dataFolder: File) {
 
         //New Module System
         println("Enable New Module System")
-        val directory = File("$dataFolder${separator}modules")
+        val directory = File("$dataFolder${separator}modules${separator}new")
         val loader = setOf(ClassModuleLoader(directory)/*, JavaModuleLoader(directory)*/)
         loader.forEach {
             it.detectModules()

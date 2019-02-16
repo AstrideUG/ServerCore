@@ -17,7 +17,7 @@ import org.bukkit.potion.PotionEffectType
 /**
  * @author Lars Artmann | LartyHD
  * Created by Lars Artmann | LartyHD on 15.02.2019 09:21.
- * Current Version: 1.0 (15.02.2019 - 15.02.2019)
+ * Current Version: 1.0 (15.02.2019 - 16.02.2019)
  */
 class AntiAfkFarming : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)) {
 
@@ -31,7 +31,7 @@ class AntiAfkFarming : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlu
         val afkPlayer = AdvancedAfkSystem.advancedAfkSystemAPI.getAfkPlayer(event.player)
         if (!afkPlayer.isAfk) return
         player.sendMessage("§cDu wurdest als AFK-Farming erkannt. Falls dies ein Fehler ist bewege dich einfach kurz!")
-        player.addPotionEffect(PotionEffect(PotionEffectType.SLOW_DIGGING, 200, 1))
+        player.addPotionEffect(PotionEffect(PotionEffectType.SLOW_DIGGING, 200, 3))
     }
 
 }

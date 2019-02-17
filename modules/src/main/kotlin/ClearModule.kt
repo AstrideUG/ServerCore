@@ -20,5 +20,6 @@ class ClearModule : SimplePlayerCommandModule("clear") {
 
     override fun execute(sender: CommandSender, target: Player) {
         target.inventory.clear()
+        target.inventory.armorContents = null
     }
 }

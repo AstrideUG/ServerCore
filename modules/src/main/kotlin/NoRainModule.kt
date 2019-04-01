@@ -7,6 +7,7 @@ import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.cancel
 import net.darkdevelopers.darkbedrock.darkness.spigot.listener.Listener
+import org.bukkit.Bukkit
 import org.bukkit.World
 import org.bukkit.event.EventHandler
 import org.bukkit.event.weather.WeatherChangeEvent
@@ -21,13 +22,15 @@ import org.bukkit.plugin.java.JavaPlugin
 class NoRainModule : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)) {
 
     override val description: ModuleDescription =
-        ModuleDescription(javaClass.canonicalName, "1.3.2", "Lars Artmann | LartyHD", "This modules block rain")
+        ModuleDescription(javaClass.canonicalName, "1.3.3", "Lars Artmann | LartyHD", "This modules block rain")
 
     private val worlds: List<String> by lazy {
         val configData = ConfigData(description.folder, "worlds.json")
         val jsonArray = loadAs(configData) ?: JsonArray()
         jsonArray.mapNotNull { it.asString() }
     }
+
+    override fun start() = Bukkit.getWorlds().forEach { it.clearWeather() }
 
     @EventHandler
     fun onWeatherChangeEvent(event: WeatherChangeEvent) {

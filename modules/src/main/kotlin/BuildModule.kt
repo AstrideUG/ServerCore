@@ -15,8 +15,6 @@ import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.metadata.FixedMetadataValue
 import org.bukkit.plugin.java.JavaPlugin
 
-private const val key: String = "build"
-
 /**
  * @author Lars Artmann | LartyHD
  * Created by Lars Artmann | LartyHD on 05.05.2019 15:38.
@@ -63,6 +61,10 @@ class BuildModule : SimplePlayerCommandModule("ToggleBuild") {
             if (player.hasMetadata(key)) cancellable.cancel(false)
         }
 
+    }
+
+    companion object {
+        private const val key: String = "build"
     }
 
 }

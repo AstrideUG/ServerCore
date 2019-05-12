@@ -76,7 +76,7 @@ class MsgModule : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlugin::
     ) {
 
         override fun perform(sender: CommandSender, args: Array<String>) = sender.isPlayer { player ->
-            val target = Bukkit.getPlayer(map[player.uniqueId])
+            val target: Player? = Bukkit.getPlayer(map[player.uniqueId])
             if (target == null) sender.sendMessage("${prefix}Dir wurde noch nicht geschrieben oder der Spieler ist offline")
             else sendMSG(player, target, args)
         }
@@ -85,6 +85,12 @@ class MsgModule : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlugin::
 
     private fun sendMSG(player: Player, target: Player, args: Array<String>) {
         val messages = args.drop(1).joinToString(" ")
+
+        if (messages.isBlank()) {
+            player.sendMessage("${prefix}Eine Nachricht ohne Inhalt? Was soll das sein?")
+            return
+        }
+
         map[target.uniqueId] = player.uniqueId
         target.sendMessage("${prefix}Du$arrow${player.name}$split$messages")
         player.sendMessage("$prefix${target.name}${arrow}Du$split$messages")

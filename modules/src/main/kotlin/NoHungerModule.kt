@@ -2,12 +2,14 @@
  * © Copyright - Lars Artmann aka. LartyHD 2018.
  */
 
+import com.google.gson.JsonArray
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import net.darkdevelopers.darkbedrock.darkness.general.configs.ConfigData
-import net.darkdevelopers.darkbedrock.darkness.general.configs.gson.GsonService
+import net.darkdevelopers.darkbedrock.darkness.general.configs.gson.GsonService.loadAs
+import net.darkdevelopers.darkbedrock.darkness.general.functions.asString
 import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
-import net.darkdevelopers.darkbedrock.darkness.spigot.functions.toWorlds
+import net.darkdevelopers.darkbedrock.darkness.spigot.functions.cancel
 import net.darkdevelopers.darkbedrock.darkness.spigot.listener.Listener
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -22,24 +24,20 @@ import org.bukkit.plugin.java.JavaPlugin
 class NoHungerModule : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)) {
 
     override val description: ModuleDescription =
-        ModuleDescription(javaClass.canonicalName, "1.0", "Lars Artmann | LartyHD", "")
+        ModuleDescription(javaClass.canonicalName, "1.0.1", "Lars Artmann | LartyHD", "")
 
-    private lateinit var worlds: List<String>
-
-    override fun load() {
-        worlds = try {
-            GsonService.loadAsJsonArray(ConfigData(description.folder, "worlds.json"))
-                .mapNotNull { it.asJsonPrimitive.asString }
-        } catch (ex: ClassCastException) {
-            emptyList()
-        }
+    private val worlds: List<String> by lazy {
+        val configData = ConfigData(description.folder, "worlds.json")
+        val jsonArray = loadAs(configData) ?: JsonArray()
+        jsonArray.mapNotNull { it.asString() }
     }
 
     @EventHandler
-    fun on(event: FoodLevelChangeEvent) {
-        val worlds = worlds.toWorlds()
-        if (event.foodLevel > (event.entity as Player).foodLevel) return
-        if (!worlds.isEmpty() && event.entity.world !in worlds) return
-        cancel(event)
+    fun onFoodLevelChangeEvent(event: FoodLevelChangeEvent) {
+        val player = event.entity as? Player ?: return
+        if (event.foodLevel > player.foodLevel) return
+        if (worlds.isNotEmpty() && player.world.name !in worlds) return
+        event.cancel()
     }
+
 }

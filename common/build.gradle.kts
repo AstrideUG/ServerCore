@@ -4,7 +4,9 @@
 
 dependencies {
     "jarLibs"("org.mongodb", "mongodb-driver-async", extra["versions.mongodb"].toString())
-    "jarLibs"("com.google.inject", "guice", extra["versions.guice"].toString())
+//    "jarLibs"("com.google.inject", "guice", extra["versions.guice"].toString())
     "jarLibs"("com.google.code.gson", "gson", extra["versions.gson"].toString())
+    "jarLibs"("com.google.inject.integration:integration:1.0")
+
 }
 

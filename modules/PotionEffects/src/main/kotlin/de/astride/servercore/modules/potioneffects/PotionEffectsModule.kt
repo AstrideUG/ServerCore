@@ -1,10 +1,13 @@
+package de.astride.servercore.modules.potioneffects
+
 /*
  * © Copyright - Lars Artmann aka. LartyHD 2018.
  */
 
+import com.google.gson.JsonArray
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import net.darkdevelopers.darkbedrock.darkness.general.configs.ConfigData
-import net.darkdevelopers.darkbedrock.darkness.general.configs.gson.GsonService
+import net.darkdevelopers.darkbedrock.darkness.general.configs.gson.GsonService.loadAs
 import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.toWorlds
@@ -20,7 +23,7 @@ import org.bukkit.potion.PotionEffectType
  * Created by Lars Artmann | LartyHD on 15.02.2019 08:37.
  * Current Version: 1.0 (15.02.2019 - 16.02.2019)
  */
-class PotionEffects : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)) {
+class PotionEffectsModule : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)) {
 
     override val description: ModuleDescription =
         ModuleDescription(javaClass.canonicalName, "1.0", "Lars Artmann | LartyHD", "")
@@ -30,12 +33,13 @@ class PotionEffects : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlug
 
     override fun load() {
         worlds = try {
-            GsonService.loadAsJsonArray(ConfigData(description.folder, "worlds.json"))
-                .mapNotNull { it.asJsonPrimitive.asString }
+            (loadAs(ConfigData(description.folder, "worlds.json"))
+                ?: JsonArray()).mapNotNull { it.asJsonPrimitive.asString }
         } catch (ex: ClassCastException) {
             emptyList()
         }
-        effects = GsonService.loadAsJsonArray(ConfigData(description.folder, "effects.json")).map {
+
+        effects = (loadAs(ConfigData(description.folder, "effects.json")) ?: JsonArray()).map {
             val effect = it.asJsonObject
             val type = try {
                 @Suppress("DEPRECATION")

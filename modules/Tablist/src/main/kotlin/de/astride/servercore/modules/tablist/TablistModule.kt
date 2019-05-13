@@ -1,3 +1,5 @@
+package de.astride.servercore.modules.tablist
+
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import me.lucko.luckperms.api.Group
 import me.lucko.luckperms.api.LuckPermsApi
@@ -6,7 +8,7 @@ import net.darkdevelopers.darkbedrock.darkness.general.functions.toNonNull
 import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
 import net.darkdevelopers.darkbedrock.darkness.spigot.listener.Listener
-import net.darkdevelopers.darkbedrock.darkness.spigot.utils.Utils
+import net.darkdevelopers.darkbedrock.darkness.spigot.utils.Utils.players
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
@@ -45,7 +47,7 @@ class TablistModule : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlug
 
     override fun start() {
         this.prepareTablist()
-        Utils.goThroughAllPlayers { this.setTablist(it) }
+        players.forEach { this.setTablist(it) }
     }
 
     private fun prepareTablist() {
@@ -63,7 +65,7 @@ class TablistModule : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlug
             edit.append("§7")
 
             this.scoreboard.registerNewTeam(formatGroupWeight(group.name)).prefix =
-                    edit.substring(0, if (edit.length < 16) edit.length else 15)
+                edit.substring(0, if (edit.length < 16) edit.length else 15)
         }
     }
 

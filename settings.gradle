@@ -4,10 +4,12 @@ include(
         "spigot",
         "modules",
         "modules:ScoreBoard",
+        "modules:Tablist",
         "common"
 )
 
 findProject(":spigot")?.name = "${rootProject.name}-Spigot"
 //findProject(":modules")?.name = "${rootProject.name}-Modules"
 findProject(":modules:ScoreBoard")?.name = "${rootProject.name}-Modules-ScoreBoard"
+findProject(":modules:TablistModule")?.name = "${rootProject.name}-Modules-Tablist"
 findProject(":common")?.name = "${rootProject.name}-Common"

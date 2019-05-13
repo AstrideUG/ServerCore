@@ -13,13 +13,22 @@ include(
         "modules:ColoredItems",
         "modules:NoRain",
         "modules:Spawn",
+        "modules:PotionEffects",
+        "modules:Clear",
+        "modules:Trash",
+        "modules:Feed",
+        "modules:MSG",
+        "modules:GameMode",
+        "modules:OnlineTimeReward",
+        "modules:Heal",
+        "modules:AntiAfkFarming",
         "common"
 )
 
 findProject(":spigot")?.name = "${rootProject.name}-Spigot"
 //findProject(":modules")?.name = "${rootProject.name}-Modules"
 findProject(":modules:ScoreBoard")?.name = "${rootProject.name}-Modules-ScoreBoard"
-findProject(":modules:TablistModule")?.name = "${rootProject.name}-Modules-Tablist"
+findProject(":modules:Tablist")?.name = "${rootProject.name}-Modules-Tablist"
 findProject(":modules:NoHunger")?.name = "${rootProject.name}-Modules-NoHunger"
 findProject(":modules:Skull")?.name = "${rootProject.name}-Modules-Skull"
 findProject(":modules:Buildmode")?.name = "${rootProject.name}-Modules-BuildMode"
@@ -28,4 +37,13 @@ findProject(":modules:Chat")?.name = "${rootProject.name}-Modules-Chat"
 findProject(":modules:ColoredItems")?.name = "${rootProject.name}-Modules-ColoredItems"
 findProject(":modules:NoRain")?.name = "${rootProject.name}-Modules-NoRain"
 findProject(":modules:Spawn")?.name = "${rootProject.name}-Modules-Spawn"
+findProject(":modules:PotionEffects")?.name = "${rootProject.name}-Modules-PotionEffects"
+findProject(":modules:Clear")?.name = "${rootProject.name}-Modules-Clear"
+findProject(":modules:Trash")?.name = "${rootProject.name}-Modules-Trash"
+findProject(":modules:Feed")?.name = "${rootProject.name}-Modules-Feed"
+findProject(":modules:MSG")?.name = "${rootProject.name}-Modules-MSG"
+findProject(":modules:GameMode")?.name = "${rootProject.name}-Modules-GameMode"
+findProject(":modules:OnlineTimeReward")?.name = "${rootProject.name}-Modules-OnlineTimeReward"
+findProject(":modules:Heal")?.name = "${rootProject.name}-Modules-Heal"
+findProject(":modules:AntiAfkFarming")?.name = "${rootProject.name}-Modules-AntiAfkFarming"
 findProject(":common")?.name = "${rootProject.name}-Common"

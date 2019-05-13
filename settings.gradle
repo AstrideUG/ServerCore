@@ -2,12 +2,12 @@ rootProject.name = "ServerCore"
 
 include(
         "spigot",
-        "modules",
+//        "modules",
         "modules:ScoreBoard",
         "common"
 )
 
 findProject(":spigot")?.name = "${rootProject.name}-Spigot"
-findProject(":modules")?.name = "${rootProject.name}-Modules"
+//findProject(":modules")?.name = "${rootProject.name}-Modules"
 findProject(":modules:ScoreBoard")?.name = "${rootProject.name}-Modules-ScoreBoard"
 findProject(":common")?.name = "${rootProject.name}-Common"

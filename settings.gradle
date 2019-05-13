@@ -27,7 +27,7 @@ include(
 findProject(":spigot")?.name = "${rootProject.name}-Spigot"
 //findProject(":modules")?.name = "${rootProject.name}-Modules"
 findProject(":modules:ScoreBoard")?.name = "${rootProject.name}-Modules-ScoreBoard"
-findProject(":modules:TablistModule")?.name = "${rootProject.name}-Modules-Tablist"
+findProject(":modules:Tablist")?.name = "${rootProject.name}-Modules-Tablist"
 findProject(":modules:NoHunger")?.name = "${rootProject.name}-Modules-NoHunger"
 findProject(":modules:Skull")?.name = "${rootProject.name}-Modules-Skull"
 findProject(":modules:Buildmode")?.name = "${rootProject.name}-Modules-BuildMode"

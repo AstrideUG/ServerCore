@@ -5,6 +5,7 @@ include(
         "modules",
         "modules:ScoreBoard",
         "modules:Tablist",
+        "modules:NoHunger",
         "modules:Skull",
         "modules:Buildmode",
         "modules:EntityInfos",
@@ -15,6 +16,7 @@ findProject(":spigot")?.name = "${rootProject.name}-Spigot"
 //findProject(":modules")?.name = "${rootProject.name}-Modules"
 findProject(":modules:ScoreBoard")?.name = "${rootProject.name}-Modules-ScoreBoard"
 findProject(":modules:TablistModule")?.name = "${rootProject.name}-Modules-Tablist"
+findProject(":modules:NoHunger")?.name = "${rootProject.name}-Modules-NoHunger"
 findProject(":modules:SkullModule")?.name = "${rootProject.name}-Modules-Skull"
 findProject(":modules:BuildmodeModule")?.name = "${rootProject.name}-Modules-Buildmode"
 findProject(":modules:EntityInfos")?.name = "${rootProject.name}-Modules-EntityInfos"

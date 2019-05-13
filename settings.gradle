@@ -23,6 +23,7 @@ include(
         "modules:Heal",
         "modules:AntiAfkFarming",
         "modules:JoinDisconnect",
+        "modules:TPA",
         "common"
 )
 
@@ -48,4 +49,5 @@ findProject(":modules:OnlineTimeReward")?.name = "${rootProject.name}-Modules-On
 findProject(":modules:Heal")?.name = "${rootProject.name}-Modules-Heal"
 findProject(":modules:AntiAfkFarming")?.name = "${rootProject.name}-Modules-AntiAfkFarming"
 findProject(":modules:JoinDisconnect")?.name = "${rootProject.name}-Modules-JoinDisconnect"
+findProject(":modules:TPA")?.name = "${rootProject.name}-Modules-TPA"
 findProject(":common")?.name = "${rootProject.name}-Common"

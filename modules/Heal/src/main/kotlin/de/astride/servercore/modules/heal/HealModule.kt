@@ -1,3 +1,5 @@
+package de.astride.servercore.modules.heal
+
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import net.darkdevelopers.darkbedrock.darkness.spigot.commands.SimplePlayerCommandModule
 import org.bukkit.command.CommandSender

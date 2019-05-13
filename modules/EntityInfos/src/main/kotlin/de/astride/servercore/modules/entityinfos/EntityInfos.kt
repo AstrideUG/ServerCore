@@ -1,3 +1,5 @@
+package de.astride.servercore.modules.entityinfos
+
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
@@ -8,14 +10,14 @@ import org.bukkit.entity.EntityType
 import org.bukkit.plugin.java.JavaPlugin
 
 /**
- * @author Lars Artmann | LartyHD
+ * @authors Lars Artmann | LartyHD - Yasin Dalal (DevSnox)
  * Created by Lars Artmann | LartyHD on 24.02.2019 22:48.
  * Current Version: 1.0 (24.02.2019 - 24.02.2019)
  */
 class EntityInfos : Module, Command(
     JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java),
-    "EntityInfos",
-    "EntityInfos.use"
+    "de.astride.servercore.modules.entityinfos.EntityInfos",
+    "de.astride.servercore.modules.entityinfos.EntityInfos.use"
 ) {
 
     override val description: ModuleDescription =

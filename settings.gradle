@@ -7,6 +7,7 @@ include(
         "modules:Tablist",
         "modules:Skull",
         "modules:Buildmode",
+        "modules:EntityInfos",
         "common"
 )
 
@@ -16,4 +17,5 @@ findProject(":modules:ScoreBoard")?.name = "${rootProject.name}-Modules-ScoreBoa
 findProject(":modules:TablistModule")?.name = "${rootProject.name}-Modules-Tablist"
 findProject(":modules:SkullModule")?.name = "${rootProject.name}-Modules-Skull"
 findProject(":modules:BuildmodeModule")?.name = "${rootProject.name}-Modules-Buildmode"
+findProject(":modules:EntityInfos")?.name = "${rootProject.name}-Modules-EntityInfos"
 findProject(":common")?.name = "${rootProject.name}-Common"

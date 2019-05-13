@@ -2,6 +2,8 @@
  * © Copyright - Lars Artmann aka. LartyHD 2019.
  */
 
+package de.astride.servercore.modules.spawn
+
 import com.google.gson.JsonObject
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin.Companion.javaPlugin
 import kotlinx.coroutines.GlobalScope

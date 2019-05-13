@@ -1,3 +1,5 @@
+package de.astride.servercore.modules.chat
+
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import me.lucko.luckperms.api.Contexts
 import me.lucko.luckperms.api.LuckPermsApi
@@ -25,7 +27,13 @@ class ChatModule : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlugin:
         get() = Bukkit.getServicesManager().getRegistration(LuckPermsApi::class.java)?.provider.toNonNull("LuckPermsAPI Service can not be null")
 
     override val description: ModuleDescription =
-        ModuleDescription("ChatModule", "1.0", "DevSnox", "Definiert die Darstellung der Nachrichten!", true)
+        ModuleDescription(
+            "de.astride.servercore.modules.skull.ChatModule",
+            "1.0",
+            "DevSnox",
+            "Definiert die Darstellung der Nachrichten!",
+            true
+        )
 
     @EventHandler(priority = EventPriority.HIGH)
     fun onChat(event: AsyncPlayerChatEvent) {

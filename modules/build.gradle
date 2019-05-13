@@ -1,7 +1,6 @@
 dependencies {
     jarLibs(project(":ServerCore-Spigot"))
     compileOnly("org.spigotmc:spigot-api:${versions_spigot}")
-    compileOnly("com.github.MilkBowl:VaultAPI:68f14eca20")
 }
 
 subprojects {
@@ -12,6 +11,7 @@ subprojects {
         compileOnly(project(":ServerCore-Spigot"))
         compileOnly("com.github.AstrideUG.DarkBedrock:Darkness-Spigot:a0ef3cffc8")
         compileOnly("com.github.lucko.LuckPerms:luckperms-api:v4.4")
+        compileOnly("com.github.MilkBowl:VaultAPI:68f14eca20")
         compileOnly("org.spigotmc:spigot-api:${versions_spigot}")
     }
 

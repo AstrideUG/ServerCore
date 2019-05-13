@@ -13,6 +13,7 @@ include(
         "modules:ColoredItems",
         "modules:NoRain",
         "modules:PotionEffects",
+        "modules:Clear",
         "common"
 )
 
@@ -28,4 +29,5 @@ findProject(":modules:ChatModule")?.name = "${rootProject.name}-Modules-Chat"
 findProject(":modules:ColoredItems")?.name = "${rootProject.name}-Modules-ColoredItems"
 findProject(":modules:NoRain")?.name = "${rootProject.name}-Modules-NoRain"
 findProject(":modules:PotionEffects")?.name = "${rootProject.name}-Modules-PotionEffects"
+findProject(":modules:Clear")?.name = "${rootProject.name}-Modules-Clear"
 findProject(":common")?.name = "${rootProject.name}-Common"

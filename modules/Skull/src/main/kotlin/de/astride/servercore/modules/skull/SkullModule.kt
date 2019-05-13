@@ -1,5 +1,7 @@
+package de.astride.servercore.modules.skull
+
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
-import net.darkdevelopers.darkbedrock.darkness.spigot.builder.ItemBuilder
+import net.darkdevelopers.darkbedrock.darkness.spigot.builder.item.SkullItemBuilder
 import net.darkdevelopers.darkbedrock.darkness.spigot.commands.SimplePlayerCommandModule
 import org.bukkit.Material
 import org.bukkit.command.CommandSender
@@ -21,6 +23,6 @@ class SkullModule : SimplePlayerCommandModule("skull") {
     }
 
     override fun execute(sender: CommandSender, target: Player) {
-        target.inventory.addItem(ItemBuilder(Material.SKULL_ITEM, 3.toShort()).setOwner(target.name).build())
+        target.inventory.addItem(SkullItemBuilder(Material.SKULL_ITEM, 1).setOwner(target.name).build())
     }
 }

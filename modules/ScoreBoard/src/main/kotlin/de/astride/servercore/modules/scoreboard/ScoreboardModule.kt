@@ -4,6 +4,8 @@
 
 package de.astride.servercore.modules.scoreboard
 
+import com.google.gson.JsonArray
+import com.google.gson.JsonPrimitive
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import net.darkdevelopers.darkbedrock.darkness.general.configs.ConfigData
 import net.darkdevelopers.darkbedrock.darkness.general.configs.gson.GsonConfig
@@ -11,9 +13,11 @@ import net.darkdevelopers.darkbedrock.darkness.general.configs.gson.GsonService
 import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
 import net.darkdevelopers.darkbedrock.darkness.spigot.events.PlayerDisconnectEvent
+import net.darkdevelopers.darkbedrock.darkness.spigot.functions.JsonObject
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.events.listen
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.events.unregister
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.sendScoreBoard
+import net.darkdevelopers.darkbedrock.darkness.spigot.functions.toJsonElement
 import net.darkdevelopers.darkbedrock.darkness.spigot.manager.game.EventsTemplate
 import net.darkdevelopers.darkbedrock.darkness.spigot.messages.SpigotGsonMessages
 import net.darkdevelopers.darkbedrock.darkness.spigot.utils.Utils.players
@@ -21,7 +25,6 @@ import org.bukkit.ChatColor.*
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
-import java.io.File
 
 /**
  * @author Lars Artmann | LartyHD
@@ -33,7 +36,7 @@ class ScoreboardModule : Module, EventsTemplate() {
     private val messagesKey: String = "messages.json"
 
     override val description: ModuleDescription = ModuleDescription(
-        javaClass.canonicalName,
+        javaClass.name,
         "1.0.0",
         "Lars Artmann | LartyHD",
         "Adds a side ScoreBoard"
@@ -50,15 +53,28 @@ class ScoreboardModule : Module, EventsTemplate() {
         val availableMessages = spigotGsonMessages.availableMessages
 
         if (availableMessages.isEmpty()) {
-            val output = javaClass.getResourceAsStream("default${File.separator}$messagesKey").reader().readText()
-            GsonService.save(configData, output)
+            val jsonElement = JsonObject(
+                mapOf(
+                    "Messages" to JsonObject(
+                        mapOf(
+                            "language" to JsonPrimitive("de_DE"),
+                            "languages" to JsonObject(
+                                mapOf(
+                                    "display-name" to JsonPrimitive(displayName),
+                                    "entries" to (entries.toJsonElement() ?: JsonArray())
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+            GsonService.save(configData, jsonElement)
         }
 
         displayName = availableMessages["display-name"]?.joinToString("")
             ?: "$AQUA${BOLD}CraftPlugin$WHITE$BOLD.$AQUA${BOLD}net"
         entries = availableMessages["entries"]?.mapNotNull { it }?.toSet()
             ?: setOf("", "powered by $AQUA${BOLD}CraftPlugin$WHITE$BOLD.$AQUA${BOLD}net")
-
 
         val plugin: ServerCoreSpigotPlugin = JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)
         registerListener(plugin)

@@ -14,6 +14,7 @@ include(
         "modules:NoRain",
         "modules:PotionEffects",
         "modules:Clear",
+        "modules:Trash",
         "common"
 )
 
@@ -30,4 +31,5 @@ findProject(":modules:ColoredItems")?.name = "${rootProject.name}-Modules-Colore
 findProject(":modules:NoRain")?.name = "${rootProject.name}-Modules-NoRain"
 findProject(":modules:PotionEffects")?.name = "${rootProject.name}-Modules-PotionEffects"
 findProject(":modules:Clear")?.name = "${rootProject.name}-Modules-Clear"
+findProject(":modules:Trash")?.name = "${rootProject.name}-Modules-Trash"
 findProject(":common")?.name = "${rootProject.name}-Common"

@@ -15,6 +15,7 @@ include(
         "modules:PotionEffects",
         "modules:Clear",
         "modules:Trash",
+        "modules:Feed",
         "common"
 )
 
@@ -32,4 +33,5 @@ findProject(":modules:NoRain")?.name = "${rootProject.name}-Modules-NoRain"
 findProject(":modules:PotionEffects")?.name = "${rootProject.name}-Modules-PotionEffects"
 findProject(":modules:Clear")?.name = "${rootProject.name}-Modules-Clear"
 findProject(":modules:Trash")?.name = "${rootProject.name}-Modules-Trash"
+findProject(":modules:Feed")?.name = "${rootProject.name}-Modules-Feed"
 findProject(":common")?.name = "${rootProject.name}-Common"

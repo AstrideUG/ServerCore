@@ -20,10 +20,10 @@ import net.darkdevelopers.darkbedrock.darkness.spigot.messages.SpigotGsonMessage
  * Created by Lars Artmann | LartyHD on 28.12.2018 09:42 (moved on 13.05.2019 at 06:05 from DarkBedrock).
  * Current Version: 1.0 (13.05.2019 - 13.05.2019)
  */
-class JoinQuitModule : Module {
+class JoinDisconnect : Module {
 
     override val description: ModuleDescription = ModuleDescription(
-        javaClass.canonicalName,
+        javaClass.simpleName,
         "1.0.0",
         "Lars Artmann | LartyHD and DevSnox",
         "Adds Join and Disconnect messages"

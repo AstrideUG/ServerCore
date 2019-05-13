@@ -1,3 +1,5 @@
+package de.astride.servercore.modules.norain
+
 import com.google.gson.JsonArray
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import net.darkdevelopers.darkbedrock.darkness.general.configs.ConfigData

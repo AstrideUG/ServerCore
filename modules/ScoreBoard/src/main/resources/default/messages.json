@@ -1,0 +1,23 @@
+{
+  "Messages": {
+    "language": "de_DE",
+    "languages": {
+      "de_DE": {
+        "Colors.PRIMARY": "\u0026b",
+        "Colors.SECONDARY": "\u00269",
+        "Colors.IMPORTANT": "\u0026f",
+        "Colors.TEXT": "\u0026a",
+        "Colors.EXTRA": "\u0026l",
+        "Colors.DESIGN": "\u0026m",
+        "Colors.RESET": "\u0026r",
+        "Colors.WARNING": "\u0026c",
+        " ": "",
+        "display-name": "%Colors.PRIMARY%%Colors.EXTRA%CraftPlugin%Colors.IMPORTANT%%Colors.EXTRA%.%Colors.PRIMARY%%Colors.EXTRA%net",
+        "entries": [
+          "",
+          "powered by %Colors.PRIMARY%%Colors.EXTRA%CraftPlugin%Colors.IMPORTANT%%Colors.EXTRA%.%Colors.PRIMARY%%Colors.EXTRA%net"
+        ]
+      }
+    }
+  }
+}

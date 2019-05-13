@@ -10,6 +10,7 @@ include(
         "modules:Buildmode",
         "modules:EntityInfos",
         "modules:Chat",
+        "modules:ColoredItems",
         "common"
 )
 
@@ -22,4 +23,5 @@ findProject(":modules:SkullModule")?.name = "${rootProject.name}-Modules-Skull"
 findProject(":modules:BuildmodeModule")?.name = "${rootProject.name}-Modules-Buildmode"
 findProject(":modules:EntityInfos")?.name = "${rootProject.name}-Modules-EntityInfos"
 findProject(":modules:ChatModule")?.name = "${rootProject.name}-Modules-Chat"
+findProject(":modules:ColoredItems")?.name = "${rootProject.name}-Modules-ColoredItems"
 findProject(":common")?.name = "${rootProject.name}-Common"

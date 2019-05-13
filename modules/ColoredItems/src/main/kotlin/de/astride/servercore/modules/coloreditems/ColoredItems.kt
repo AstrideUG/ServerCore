@@ -1,3 +1,9 @@
+/*
+ * © Copyright - Lars Artmann aka. LartyHD 2019.
+ */
+
+package de.astride.servercore.modules.coloreditems
+
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription

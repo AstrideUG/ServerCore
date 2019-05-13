@@ -1,3 +1,5 @@
+package de.astride.servercore.modules.gamemode
+
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import net.darkdevelopers.darkbedrock.darkness.general.functions.getOrKey
 import net.darkdevelopers.darkbedrock.darkness.spigot.commands.SimplePermissionsCommandModule
@@ -15,7 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin
  * Created by Lars Artmann | LartyHD on 22.12.2018 05:47.
  * Current Version: 1.0 (22.12.2018 - 15.02.2019)
  */
-class GameMode : SimplePermissionsCommandModule("GameMode") {
+class GameMode : SimplePermissionsCommandModule("de.astride.servercore.modules.gamemode.GameMode") {
     private val otherPerms get() = config.permissions.getOrKey("$singlePerms.Other")
     override val command: () -> PermissionCommand = {
         object : PermissionCommand(
@@ -48,4 +50,7 @@ class GameMode : SimplePermissionsCommandModule("GameMode") {
             }
         }
     }
+
+    private fun Map<String, List<String?>>.getOrKey(key: String): String =
+        map { it.key to it.value.firstOrNull() }.toMap().getOrKey(key)
 }

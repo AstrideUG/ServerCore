@@ -17,6 +17,7 @@ include(
         "modules:Trash",
         "modules:Feed",
         "modules:MSG",
+        "modules:GameMode",
         "common"
 )
 
@@ -36,4 +37,5 @@ findProject(":modules:Clear")?.name = "${rootProject.name}-Modules-Clear"
 findProject(":modules:Trash")?.name = "${rootProject.name}-Modules-Trash"
 findProject(":modules:Feed")?.name = "${rootProject.name}-Modules-Feed"
 findProject(":modules:MSG")?.name = "${rootProject.name}-Modules-MSG"
+findProject(":modules:GameMode")?.name = "${rootProject.name}-Modules-GameMode"
 findProject(":common")?.name = "${rootProject.name}-Common"

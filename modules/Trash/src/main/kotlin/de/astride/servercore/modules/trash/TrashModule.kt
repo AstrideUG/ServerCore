@@ -1,3 +1,5 @@
+package de.astride.servercore.modules.trash
+
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import net.darkdevelopers.darkbedrock.darkness.spigot.commands.SimplePermissionsCommandModule
 import net.darkdevelopers.darkbedrock.darkness.spigot.utils.isPlayer
@@ -17,10 +19,14 @@ class TrashModule : SimplePermissionsCommandModule("trash") {
 
     override val command: () -> SimplePermissionsCommandModule.PermissionCommand = {
         object : PermissionCommand(JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)) {
-            override fun perform(sender: CommandSender, args: Array<String>) {
-                sender.isPlayer {
-                    it.openInventory(Bukkit.createInventory(it, 27, config.messages["inventory-name"]))
-                }
+            override fun perform(sender: CommandSender, args: Array<String>) = sender.isPlayer {
+                it.openInventory(
+                    Bukkit.createInventory(
+                        it,
+                        27,
+                        config.messages["inventory-name"]?.firstOrNull().toString()
+                    )
+                )
             }
         }
     }

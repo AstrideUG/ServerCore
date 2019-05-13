@@ -1,3 +1,5 @@
+package de.astride.servercore.modules.msg
+
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
@@ -22,7 +24,7 @@ import java.util.*
  * Created by Lars Artmann | LartyHD on 28.12.2018 16:28.
  * Current Version: 1.0 (28.12.2018 - 28.12.2018)
  */
-class MsgModule : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)) {
+class MSGModule : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)) {
 
     override val description: ModuleDescription = ModuleDescription(
         javaClass.canonicalName,

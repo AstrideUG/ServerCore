@@ -1,3 +1,5 @@
+package de.astride.servercore.modules.buildmode
+
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import net.darkdevelopers.darkbedrock.darkness.spigot.commands.SimplePlayerCommandModule
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.cancel
@@ -20,7 +22,7 @@ import org.bukkit.plugin.java.JavaPlugin
  * Created by Lars Artmann | LartyHD on 05.05.2019 15:38.
  * Current Version: 1.0 (05.05.2019 - 05.05.2019)
  */
-class BuildModule : SimplePlayerCommandModule("ToggleBuild") {
+class BuildmodeModule : SimplePlayerCommandModule("ToggleBuild") {
 
     private val javaPlugin: ServerCoreSpigotPlugin = JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)
     private var listener: Listener? = null

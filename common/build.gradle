@@ -7,5 +7,6 @@ dependencies {
 //    "jarLibs"("com.google.inject", "guice", extra["versions.guice"].toString())
     jarLibs("com.google.code.gson:gson:${versions_gson}")
     jarLibs("com.google.inject.integration:integration:1.0")
+    compileOnly("com.github.AstrideUG.DarkBedrock:Darkness-Common:6bc7e3fe16")
 }
 

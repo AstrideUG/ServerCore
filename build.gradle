@@ -30,20 +30,13 @@ subprojects {
 
     repositories {
         mavenCentral()
-        jcenter()
-        google()
-        maven { url = ("https://hub.spigotmc.org/nexus/content/groups/public/") }
-        maven { url = ("https://hub.spigotmc.org/nexus/content/repositories/snapshots/") }
-        maven { url = ("https://oss.sonatype.org/content/groups/public/") }
-        maven { url = ("https://oss.sonatype.org/content/repositories/snapshots/") }
-        maven { url = ("http://repo.dmulloy2.net/content/groups/public/") }
-        maven { url = ("https://repo.velocitypowered.com/snapshots/") }
-        maven { url = ("http://repo.spongepowered.org/maven") }
-//        maven { url = ("http://nexus.hc.to/content/repositories/pub_releases/") }
+        maven { url = "https://jitpack.io" }
+        maven { url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
+        maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 
     configurations {
-        // configuration that holds jars to include in the jar
+        //configuration that holds jars to include in the jar
         compile.extendsFrom jarLibs
     }
 

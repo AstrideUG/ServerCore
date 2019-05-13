@@ -1,0 +1,11 @@
+/*
+ * © Copyright - Lars Artmann aka. LartyHD 2018.
+ */
+
+dependencies {
+    jarLibs("org.mongodb:mongodb-driver-async:${versions_mongodb}")
+//    "jarLibs"("com.google.inject", "guice", extra["versions.guice"].toString())
+    jarLibs("com.google.code.gson:gson:${versions_gson}")
+    jarLibs("com.google.inject.integration:integration:1.0")
+}
+

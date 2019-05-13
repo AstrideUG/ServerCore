@@ -20,6 +20,7 @@ include(
         "modules:GameMode",
         "modules:OnlineTimeReward",
         "modules:Heal",
+        "modules:AntiAfkFarming",
         "common"
 )
 
@@ -42,4 +43,5 @@ findProject(":modules:MSG")?.name = "${rootProject.name}-Modules-MSG"
 findProject(":modules:GameMode")?.name = "${rootProject.name}-Modules-GameMode"
 findProject(":modules:OnlineTimeReward")?.name = "${rootProject.name}-Modules-OnlineTimeReward"
 findProject(":modules:Heal")?.name = "${rootProject.name}-Modules-Heal"
+findProject(":modules:AntiAfkFarming")?.name = "${rootProject.name}-Modules-AntiAfkFarming"
 findProject(":common")?.name = "${rootProject.name}-Common"

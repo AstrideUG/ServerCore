@@ -15,7 +15,7 @@ class ServerCoreSpigotPlugin : DarkPlugin() {
     }
 
     companion object {
-        val javaPlugin: ServerCoreSpigotPlugin = getPlugin(ServerCoreSpigotPlugin::class.java)
+        val javaPlugin: ServerCoreSpigotPlugin get() = getPlugin(ServerCoreSpigotPlugin::class.java)
     }
 
 }

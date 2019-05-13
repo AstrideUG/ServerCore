@@ -6,6 +6,7 @@ dependencies {
 
 subprojects {
 
+    group = "${group}.modules"
 
     dependencies {
         compileOnly(project(":ServerCore-Spigot"))

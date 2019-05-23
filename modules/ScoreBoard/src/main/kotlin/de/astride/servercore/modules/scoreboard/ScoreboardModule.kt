@@ -52,6 +52,11 @@ class ScoreboardModule : Module, EventsTemplate() {
         val spigotGsonMessages = SpigotGsonMessages(GsonConfig(configData).load())
         val availableMessages = spigotGsonMessages.availableMessages
 
+        displayName = availableMessages["display-name"]?.joinToString("")
+            ?: "$AQUA${BOLD}CraftPlugin$WHITE$BOLD.$AQUA${BOLD}net"
+        entries = availableMessages["entries"]?.mapNotNull { it }?.toSet()
+            ?: setOf("", "powered by $AQUA${BOLD}CraftPlugin$WHITE$BOLD.$AQUA${BOLD}net")
+
         if (availableMessages.isEmpty()) {
             val jsonElement = JsonObject(
                 mapOf(
@@ -70,11 +75,6 @@ class ScoreboardModule : Module, EventsTemplate() {
             )
             GsonService.save(configData, jsonElement)
         }
-
-        displayName = availableMessages["display-name"]?.joinToString("")
-            ?: "$AQUA${BOLD}CraftPlugin$WHITE$BOLD.$AQUA${BOLD}net"
-        entries = availableMessages["entries"]?.mapNotNull { it }?.toSet()
-            ?: setOf("", "powered by $AQUA${BOLD}CraftPlugin$WHITE$BOLD.$AQUA${BOLD}net")
 
         val plugin: ServerCoreSpigotPlugin = JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)
         registerListener(plugin)

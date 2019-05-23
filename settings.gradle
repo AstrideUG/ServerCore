@@ -24,6 +24,7 @@ include(
         "modules:AntiAfkFarming",
         "modules:JoinDisconnect",
         "modules:TPA",
+        "modules:EntityID",
         "common"
 )
 
@@ -50,4 +51,5 @@ findProject(":modules:Heal")?.name = "${rootProject.name}-Modules-Heal"
 findProject(":modules:AntiAfkFarming")?.name = "${rootProject.name}-Modules-AntiAfkFarming"
 findProject(":modules:JoinDisconnect")?.name = "${rootProject.name}-Modules-JoinDisconnect"
 findProject(":modules:TPA")?.name = "${rootProject.name}-Modules-TPA"
+findProject(":modules:EntityID")?.name = "${rootProject.name}-Modules-EntityID"
 findProject(":common")?.name = "${rootProject.name}-Common"

@@ -12,6 +12,9 @@ import net.darkdevelopers.darkbedrock.darkness.spigot.events.PlayerDisconnectEve
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.events.listen
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.events.unregister
 import net.darkdevelopers.darkbedrock.darkness.spigot.utils.isPlayer
+import net.darkdevelopers.darkbedrock.darkness.universal.builder.textcomponent.builder
+import net.md_5.bungee.api.chat.ClickEvent
+import net.md_5.bungee.api.chat.TextComponent
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 import org.bukkit.event.Listener
@@ -45,8 +48,15 @@ class EntityID : Module, Command(
 
     override fun start() {
         listener += listen<PlayerInteractEntityEvent>(javaPlugin) { event ->
-            if (!event.player.isActive) return@listen
-            event.player.sendMessage("Entity id: ${event.rightClicked.entityId}")
+            val player = event.player
+            if (!player.isActive) return@listen
+            val rightClicked = event.rightClicked
+            player.sendMessage("Entity id: ${rightClicked.entityId}")
+            player.spigot().sendMessage(
+                TextComponent("Entity uniqueId: ${rightClicked.uniqueId}").builder().setClickEvent(
+                    ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, rightClicked.uniqueId.toString())
+                ).build()
+            )
         }
         listener += listen<PlayerDisconnectEvent>(javaPlugin) { event ->
             event.player.isActive = false

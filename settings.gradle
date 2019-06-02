@@ -25,6 +25,7 @@ include(
         "modules:JoinDisconnect",
         "modules:TPA",
         "modules:EntityID",
+        "modules:OnlyProxyJoin",
         "common"
 )
 
@@ -52,4 +53,5 @@ findProject(":modules:AntiAfkFarming")?.name = "${rootProject.name}-Modules-Anti
 findProject(":modules:JoinDisconnect")?.name = "${rootProject.name}-Modules-JoinDisconnect"
 findProject(":modules:TPA")?.name = "${rootProject.name}-Modules-TPA"
 findProject(":modules:EntityID")?.name = "${rootProject.name}-Modules-EntityID"
+findProject(":modules:OnlyProxyJoin")?.name = "${rootProject.name}-Modules-OnlyProxyJoin"
 findProject(":common")?.name = "${rootProject.name}-Common"

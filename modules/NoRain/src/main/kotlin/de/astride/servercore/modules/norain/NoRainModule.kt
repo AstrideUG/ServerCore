@@ -2,45 +2,50 @@ package de.astride.servercore.modules.norain
 
 import com.google.gson.JsonArray
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
-import net.darkdevelopers.darkbedrock.darkness.general.configs.ConfigData
-import net.darkdevelopers.darkbedrock.darkness.general.configs.gson.GsonService.loadAs
-import net.darkdevelopers.darkbedrock.darkness.general.functions.asString
+import net.darkdevelopers.darkbedrock.darkness.general.functions.load
+import net.darkdevelopers.darkbedrock.darkness.general.functions.toConfigData
+import net.darkdevelopers.darkbedrock.darkness.general.functions.toList
 import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
-import net.darkdevelopers.darkbedrock.darkness.spigot.functions.cancel
-import net.darkdevelopers.darkbedrock.darkness.spigot.listener.Listener
+import net.darkdevelopers.darkbedrock.darkness.spigot.functions.events.cancel
+import net.darkdevelopers.darkbedrock.darkness.spigot.functions.events.listen
+import net.darkdevelopers.darkbedrock.darkness.spigot.manager.game.EventsTemplate
 import org.bukkit.Bukkit
 import org.bukkit.World
-import org.bukkit.event.EventHandler
 import org.bukkit.event.weather.WeatherChangeEvent
 import org.bukkit.event.world.WorldLoadEvent
-import org.bukkit.plugin.java.JavaPlugin
 
 /**
  * @author Lars Artmann | LartyHD
  * Created by Lars Artmann | LartyHD on 05.07.2018 11:17.
- * Last edit 01.04.2019
+ * Last edit 08.06.2019
  */
-class NoRainModule : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)) {
+class NoRainModule : Module, EventsTemplate() {
 
-    override val description: ModuleDescription =
-        ModuleDescription(javaClass.canonicalName, "1.3.3", "Lars Artmann | LartyHD", "This modules block rain")
+    override val description: ModuleDescription = ModuleDescription(
+        javaClass.simpleName,
+        "1.4.0",
+        "Lars Artmann | LartyHD",
+        "This modules block rain"
+    )
 
-    private val worlds: List<String> by lazy {
-        val configData = ConfigData(description.folder, "worlds.json")
-        val jsonArray = loadAs(configData) ?: JsonArray()
-        jsonArray.mapNotNull { it.asString() }
+    private val worlds by lazy {
+        val configData = description.folder.toConfigData("worlds")
+        val worlds = configData.load<JsonArray>().toList()
+        worlds.mapNotNull { it.toString() }
     }
 
-    override fun start() = Bukkit.getWorlds().forEach { it.clearWeather() }
+    override fun start() {
 
-    @EventHandler
-    fun onWeatherChangeEvent(event: WeatherChangeEvent) {
-        if (worlds.isEmpty() || event.world.name in worlds) event.cancel(event.toWeatherState())
+        val plugin = ServerCoreSpigotPlugin.javaPlugin
+        Bukkit.getWorlds().forEach { it.clearWeather() }
+
+        listen<WeatherChangeEvent>(plugin) { event -> if (event.world.name in worlds) event.cancel(event.toWeatherState()) }.add()
+        listen<WorldLoadEvent>(plugin) { event -> if (event.world.name in worlds) event.world.clearWeather() }.add()
+
     }
 
-    @EventHandler
-    fun onWorldLoadEvent(event: WorldLoadEvent) = event.world.clearWeather()
+    override fun stop(): Unit = reset()
 
     private fun World.clearWeather() {
         setStorm(false)

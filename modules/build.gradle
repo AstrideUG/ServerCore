@@ -8,6 +8,7 @@ subprojects {
     group = "${group}.modules"
 
     dependencies {
+        compile(fileTree("../$libsDirName"))
         compileOnly(project(":ServerCore-Spigot"))
 //        compileOnly("com.github.AstrideUG.DarkBedrock:Darkness-Spigot:e3f8a32890")
         compileOnly("com.github.lucko.LuckPerms:luckperms-api:v4.4")

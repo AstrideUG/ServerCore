@@ -8,7 +8,9 @@ import com.google.gson.JsonObject
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import de.astride.servercore.modules.itemconvertingoninteraction.config.Config
 import net.darkdevelopers.darkbedrock.darkness.general.configs.ConfigData
+import net.darkdevelopers.darkbedrock.darkness.general.configs.toConfigMap
 import net.darkdevelopers.darkbedrock.darkness.general.functions.load
+import net.darkdevelopers.darkbedrock.darkness.general.functions.save
 import net.darkdevelopers.darkbedrock.darkness.general.functions.toMap
 import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
@@ -34,8 +36,9 @@ class ItemConvertingOnInteraction : Module, EventsTemplate() {
     )
 
     override fun start() {
-        val configData = ConfigData(description.folder, "materials.json")
+        val configData = ConfigData(description.folder, "config")
         val config = Config(configData.load<JsonObject>().toMap())
+        configData.save(config.toConfigMap())
         val materials = config.materials
 
         initSpigotStaticConfigMappings()

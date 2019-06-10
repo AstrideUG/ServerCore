@@ -6,7 +6,6 @@ package de.astride.servercore.modules.joindisconnect
 
 
 import net.darkdevelopers.darkbedrock.darkness.general.configs.ConfigData
-import net.darkdevelopers.darkbedrock.darkness.general.configs.gson.GsonConfig
 import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.events.setDisconnectMessage
@@ -24,7 +23,7 @@ class JoinDisconnect : Module {
 
     override val description: ModuleDescription = ModuleDescription(
         javaClass.simpleName,
-        "1.0.0",
+        "1.0.1",
         "Lars Artmann | LartyHD and DevSnox",
         "Adds Join and Disconnect messages"
     )
@@ -32,7 +31,7 @@ class JoinDisconnect : Module {
     override fun start() {
         val configData = ConfigData(description.folder, "messages.json")
         @Suppress("DEPRECATION")
-        val messages = SpigotGsonMessages(GsonConfig(configData).load()).availableMessages
+        val messages = SpigotGsonMessages(configData).availableMessages
         setJoinMessage { event ->
             val player = event.player ?: return@setJoinMessage null
             if (!player.hasPlayedBefore())

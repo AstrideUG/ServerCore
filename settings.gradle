@@ -26,6 +26,7 @@ include(
         "modules:TPA",
         "modules:EntityID",
         "modules:OnlyProxyJoin",
+        "modules:ItemConvertingOnInteraction",
         "common"
 )
 
@@ -54,4 +55,5 @@ findProject(":modules:JoinDisconnect")?.name = "${rootProject.name}-Modules-Join
 findProject(":modules:TPA")?.name = "${rootProject.name}-Modules-TPA"
 findProject(":modules:EntityID")?.name = "${rootProject.name}-Modules-EntityID"
 findProject(":modules:OnlyProxyJoin")?.name = "${rootProject.name}-Modules-OnlyProxyJoin"
+findProject(":modules:ItemConvertingOnInteraction")?.name = "${rootProject.name}-Modules-ItemConvertingOnInteraction"
 findProject(":common")?.name = "${rootProject.name}-Common"

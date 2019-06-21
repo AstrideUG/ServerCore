@@ -1,0 +1,16 @@
+/*
+ * © Copyright - Lars Artmann aka. LartyHD 2019.
+ */
+
+repositories {
+    maven { url = 'https://repo.velocitypowered.com/snapshots/' }
+}
+
+dependencies {
+    jarLibs(project(":ServerCore-Common"))
+    compileOnly("com.github.AstrideUG.DarkBedrock:Darkness-Common:067d26c088")
+
+    compileOnly "com.velocitypowered:velocity-api:$versions_velocity"
+    annotationProcessor "com.velocitypowered:velocity-api:$versions_velocity"
+
+}

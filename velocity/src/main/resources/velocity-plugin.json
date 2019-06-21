@@ -1,0 +1,14 @@
+{
+  "id": "servercore",
+  "name": "ServerCore",
+  "version": "@version@",
+  "description": "ServerCore is a Core Plugin.",
+  "url": "astride.de",
+  "authors": [
+    "Lars Artmann | LartyHD"
+  ],
+  "dependencies": [
+    "darkframe"
+  ],
+  "main": "de.astride.minecraft.servercore.velocity.ServerCoreVelocityPlugin"
+}

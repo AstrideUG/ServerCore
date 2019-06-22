@@ -1,0 +1,26 @@
+/*
+ * © Copyright - Lars Artmann aka. LartyHD 2019.
+ */
+
+subprojects {
+
+    repositories {
+        maven { url = 'https://repo.velocitypowered.com/snapshots/' }
+    }
+
+    dependencies {
+
+        compileOnly(fileTree(libsDirName))
+        compileOnly(fileTree("../$libsDirName"))
+        compileOnly(fileTree("../../$libsDirName"))
+
+        jarLibs(project(":ServerCore-Velocity"))
+
+        compileOnly "com.velocitypowered:velocity-api:$versions_velocity"
+        annotationProcessor "com.velocitypowered:velocity-api:$versions_velocity"
+
+    }
+
+}
+
+

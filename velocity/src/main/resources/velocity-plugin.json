@@ -8,7 +8,10 @@
     "Lars Artmann | LartyHD"
   ],
   "dependencies": [
-    "darkframe"
+    {
+      "id": "darkframe",
+      "optional": false
+    }
   ],
   "main": "de.astride.minecraft.servercore.velocity.ServerCoreVelocityPlugin"
 }

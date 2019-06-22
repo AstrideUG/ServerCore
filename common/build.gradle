@@ -3,10 +3,13 @@
  */
 
 dependencies {
+
+    compileOnly(fileTree(libsDirName))
+    compileOnly(fileTree("../$libsDirName"))
+
     jarLibs("org.mongodb:mongodb-driver-async:${versions_mongodb}")
 //    "jarLibs"("com.google.inject", "guice", extra["versions.guice"].toString())
     jarLibs("com.google.code.gson:gson:${versions_gson}")
     jarLibs("com.google.inject.integration:integration:1.0")
-    compileOnly("com.github.AstrideUG.DarkBedrock:Darkness-Common:067d26c088")
 }
 

@@ -1,7 +1,7 @@
 /*
  * © Copyright - Lars Artmann aka. LartyHD 2019.
  */
-version = "1.1.0"
+version = "1.1.1"
 
 repositories {
     maven { url = 'https://repo.velocitypowered.com/snapshots/' }
@@ -9,7 +9,6 @@ repositories {
 
 dependencies {
     jarLibs(project(":ServerCore-Common"))
-    compileOnly("com.github.AstrideUG.DarkBedrock:Darkness-Common:067d26c088")
 
     compileOnly "com.velocitypowered:velocity-api:$versions_velocity"
     annotationProcessor "com.velocitypowered:velocity-api:$versions_velocity"

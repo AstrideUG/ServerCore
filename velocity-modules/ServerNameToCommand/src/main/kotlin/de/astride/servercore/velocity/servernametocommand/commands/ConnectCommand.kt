@@ -12,12 +12,13 @@ import de.astride.servercore.velocity.servernametocommand.configs.config
 import de.astride.servercore.velocity.servernametocommand.configs.messages
 import de.astride.servercore.velocity.servernametocommand.configs.permissions
 import de.astride.servercore.velocity.servernametocommand.functions.toComponent
+import java.util.logging.Logger
 
 /**
  * Created on 21.06.2019 23:37.
  * @author Lars Artmann | LartyHD
  */
-class ConnectCommand(private val servers: Set<RegisteredServer>) : Command {
+class ConnectCommand(private val servers: Set<RegisteredServer>, private val logger: Logger) : Command {
 
     init {
         if (servers.isEmpty()) throw IllegalArgumentException("servers can not be empty")
@@ -33,8 +34,10 @@ class ConnectCommand(private val servers: Set<RegisteredServer>) : Command {
         } else source.sendMessage(messages.onlyForPlayers.toComponent())
     }
 
-    override fun hasPermission(source: CommandSource, args: Array<out String>): Boolean = servers.any {
-        source.hasPermission(permissions.connectCommand.serverName(it))
+    override fun hasPermission(source: CommandSource, args: Array<out String>): Boolean {
+        val player = source as? Player
+        if (config.disableOnCurrentServer && player?.currentServer?.orElse(null)?.server in servers) return false
+        return servers.any { source.hasPermission(permissions.connectCommand.serverName(it)) }
     }
 
     private fun String.serverName(it: RegisteredServer): String =

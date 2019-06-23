@@ -6,6 +6,7 @@ package de.astride.servercore.velocity.servernametocommand
 
 import com.velocitypowered.api.proxy.server.RegisteredServer
 import de.astride.minecraft.servercore.velocity.ServerCoreVelocityPlugin
+import de.astride.minecraft.servercore.velocity.ServerCoreVelocityPlugin.Companion.logger
 import de.astride.servercore.velocity.servernametocommand.commands.ConnectCommand
 import de.astride.servercore.velocity.servernametocommand.configs.config
 import de.astride.servercore.velocity.servernametocommand.configs.createConfigs
@@ -32,14 +33,14 @@ class ServerNameToCommand : Module {
 
         val server = ServerCoreVelocityPlugin.server
         val allServers = server.allServers
-        allServers.forEach { server.commandManager.register(ConnectCommand(setOf(it)), it.serverInfo.name) }
+        allServers.forEach { server.commandManager.register(ConnectCommand(setOf(it), logger), it.serverInfo.name) }
         val rawCategories = allServers.map { it.serverInfo.name.split(config.splitter).first() to it }
 
         val categories = mutableMapOf<String, MutableSet<RegisteredServer>>()
         for ((key, value) in rawCategories) categories.getOrPut(key) { mutableSetOf() } += value
 
         categories.forEach { (category, servers) ->
-            server.commandManager.register(ConnectCommand(servers), category)
+            server.commandManager.register(ConnectCommand(servers, logger), category)
         }
 
     }

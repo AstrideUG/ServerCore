@@ -14,5 +14,6 @@ import net.darkdevelopers.darkbedrock.darkness.general.configs.getValue
 class Config(values: Map<String, Any?>) {
 
     val splitter by values.default { "-" }
+    val disableOnCurrentServer by values.default { true }
 
 }

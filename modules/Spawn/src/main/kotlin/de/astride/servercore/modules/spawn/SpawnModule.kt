@@ -26,8 +26,8 @@ import org.bukkit.event.player.PlayerJoinEvent
 class SpawnModule : Module {
 
     override val description: ModuleDescription = ModuleDescription(
-        javaClass.canonicalName,
-        "1.0.1",
+        javaClass.simpleName,
+        "1.0.2",
         "Lars Artmann | LartyHD",
         "Adds a spawn command"
     )

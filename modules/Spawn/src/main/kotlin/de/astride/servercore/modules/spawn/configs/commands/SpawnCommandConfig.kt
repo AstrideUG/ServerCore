@@ -19,7 +19,7 @@ class SpawnCommandConfig(values: Map<String, Any?>) : AbstractCommandConfig(valu
 
     val delay by values.default { 3000L }
 
-    val messageSpawnTeleportationSuccess: String? by values.default { "You will be teleported" }
+    val messageSpawnTeleportationSuccess: String? by values.default { "You will be teleported in <Delay.SECONDS> seconds" }
     val messageSpawnTeleportationSuccessfully: String? by values.default { "You have been teleported" }
 
 }

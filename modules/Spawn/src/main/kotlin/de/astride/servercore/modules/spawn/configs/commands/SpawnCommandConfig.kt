@@ -15,7 +15,7 @@ import net.darkdevelopers.darkbedrock.darkness.spigot.configs.commands.AbstractC
 class SpawnCommandConfig(values: Map<String, Any?>) : AbstractCommandConfig(values) {
 
     override val commandName by values.default { "Spawn" }
-    override val permission by values.default { "spawnmodule.commands.spawn" }
+    override val permission by values.default { "modules.spawn.commands.spawn" }
 
     val delay by values.default { 3000L }
 

@@ -5,51 +5,51 @@
 package de.astride.servercore.modules.spawn
 
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin.Companion.javaPlugin
-import de.astride.servercore.modules.spawn.commands.SpawnCommand
+import de.astride.servercore.modules.spawn.commands.registerAddSpawnCommand
+import de.astride.servercore.modules.spawn.commands.registerSpawnCommand
 import de.astride.servercore.modules.spawn.configs.config
+import de.astride.servercore.modules.spawn.configs.configs
+import de.astride.servercore.modules.spawn.configs.directory
+import de.astride.servercore.modules.spawn.configs.save
 import de.astride.servercore.modules.spawn.extenstions.teleportToRandom
-import net.darkdevelopers.darkbedrock.darkness.general.configs.createConfig
-import net.darkdevelopers.darkbedrock.darkness.general.configs.mapFromConfig
-import net.darkdevelopers.darkbedrock.darkness.general.configs.toConfigData
-import net.darkdevelopers.darkbedrock.darkness.general.configs.toConfigMap
-import net.darkdevelopers.darkbedrock.darkness.general.functions.save
+import net.darkdevelopers.darkbedrock.darkness.general.configs.createConfigs
 import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.events.listen
-import org.bukkit.event.Listener
+import net.darkdevelopers.darkbedrock.darkness.spigot.manager.game.EventsTemplate
 import org.bukkit.event.player.PlayerJoinEvent
 
 /**
  * Created on 23.12.2018 16:53.
  * @author Lars Artmann | LartyHD
  */
-class SpawnModule : Module {
+class SpawnModule : Module, EventsTemplate() {
 
     override val description: ModuleDescription = ModuleDescription(
         javaClass.simpleName,
-        "1.0.2",
+        "1.0.3",
         "Lars Artmann | LartyHD",
         "Adds a spawn command"
     )
 
-    private lateinit var listener: Listener
-    private val directory get() = description.folder
-
     override fun start() {
 
-        ::config.createConfig(directory)
+        directory = description.folder
 
-        SpawnCommand.setup(javaPlugin, SpawnCommand.javaClass.mapFromConfig(directory))
-//        AddSpawnCommand.setup(javaPlugin, AddSpawnCommand.javaClass.mapFromConfig(directory))
+        configs.createConfigs(directory)
 
-        listener = listen<PlayerJoinEvent>(javaPlugin) {
+        registerSpawnCommand(javaPlugin)
+        registerAddSpawnCommand(javaPlugin)
+
+        listen<PlayerJoinEvent>(javaPlugin) {
             config.locations.teleportToRandom(it.player)
-        }
+        }.add()
 
     }
 
     override fun stop() {
-        ::config.toConfigData(directory).save(config.toConfigMap())
+        configs.map { it.save() }
+        reset()
     }
 
 }

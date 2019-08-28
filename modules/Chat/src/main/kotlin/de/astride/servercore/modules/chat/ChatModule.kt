@@ -7,8 +7,8 @@ import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.events.setChatFormat
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.events.unregisterChatFormat
+import net.darkdevelopers.darkbedrock.darkness.spigot.functions.translateColors
 import org.bukkit.Bukkit
-import org.bukkit.ChatColor
 
 /**
  * @author Lars Artmann | LartyHD
@@ -21,23 +21,20 @@ class ChatModule : Module {
         get() = Bukkit.getServicesManager().getRegistration(LuckPermsApi::class.java)?.provider.toNonNull("LuckPermsAPI Service can not be null")
 
     override val description: ModuleDescription = ModuleDescription(
-        javaClass.canonicalName,
-        "1.0.0",
+        javaClass.simpleName,
+        "1.0.1",
         "DevSnox & Lars Artmann | LartyHD",
         "Definiert die Darstellung der Nachrichten!"
     )
 
     override fun start() = setChatFormat { event ->
         val player = event.player
-        var message = event.message
+        var message: String = event.message
 
         if (!player.hasPermission("chatmodule.color.all")) {
-            if (player.hasPermission("chatmodule.color.basic")) {
-                message = ChatColor.translateAlternateColorCodes('&', message)
+            if (player.hasPermission("chatmodule.color.basic"))
                 message = message.replace("\u00A7((?i)[fk-or])".toRegex(), "")
-            } else {
-                message.replace("&", "")
-            }
+            message = message.translateColors()
         }
 
         val stringBuilder = StringBuilder()
@@ -46,7 +43,13 @@ class ChatModule : Module {
         val prefix =
             luckPermsApi.userManager.getUser(player.uniqueId)?.cachedData?.getMetaData(Contexts.allowAll())?.prefix
 
-        stringBuilder.append(prefix).append("§8- ").append(prefix?.substring(0, 2)).append(player.name).append(" §8» ")
+        stringBuilder
+            .append(prefix)
+            .append("§8- ")
+            .append(prefix?.substring(0, 2))
+            .append(player.name)
+            .append(" §8» ")
+
 
         when (group?.name) {
             "owner", "admin" -> stringBuilder.append("§4§l")
@@ -57,7 +60,7 @@ class ChatModule : Module {
             }
         }
 
-        ChatColor.translateAlternateColorCodes('&', stringBuilder.toString())
+        stringBuilder.append(message).toString().translateColors()
     }
 
     override fun stop() = unregisterChatFormat()

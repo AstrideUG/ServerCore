@@ -5,8 +5,8 @@ import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
 import net.darkdevelopers.darkbedrock.darkness.spigot.commands.Command
 import net.darkdevelopers.darkbedrock.darkness.spigot.events.PlayerDisconnectEvent
+import net.darkdevelopers.darkbedrock.darkness.spigot.functions.isPlayer
 import net.darkdevelopers.darkbedrock.darkness.spigot.listener.Listener
-import net.darkdevelopers.darkbedrock.darkness.spigot.utils.isPlayer
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.command.CommandSender

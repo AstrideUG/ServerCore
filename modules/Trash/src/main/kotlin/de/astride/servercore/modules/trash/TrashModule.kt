@@ -2,7 +2,7 @@ package de.astride.servercore.modules.trash
 
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import net.darkdevelopers.darkbedrock.darkness.spigot.commands.SimplePermissionsCommandModule
-import net.darkdevelopers.darkbedrock.darkness.spigot.utils.isPlayer
+import net.darkdevelopers.darkbedrock.darkness.spigot.functions.isPlayer
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin

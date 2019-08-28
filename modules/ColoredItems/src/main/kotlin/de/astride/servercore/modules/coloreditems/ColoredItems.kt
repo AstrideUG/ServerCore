@@ -9,7 +9,7 @@ import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
 import net.darkdevelopers.darkbedrock.darkness.spigot.builder.item.ItemBuilder
 import net.darkdevelopers.darkbedrock.darkness.spigot.commands.Command
-import net.darkdevelopers.darkbedrock.darkness.spigot.utils.isPlayer
+import net.darkdevelopers.darkbedrock.darkness.spigot.functions.isPlayer
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.command.CommandSender

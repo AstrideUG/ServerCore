@@ -29,6 +29,7 @@ include(
         "modules:EntityID",
         "modules:OnlyProxyJoin",
         "modules:ItemConvertingOnInteraction",
+        "modules:MoveBorder",
         "common"
 )
 
@@ -59,5 +60,6 @@ findProject(":modules:TPA")?.name = "${rootProject.name}-Modules-TPA"
 findProject(":modules:EntityID")?.name = "${rootProject.name}-Modules-EntityID"
 findProject(":modules:OnlyProxyJoin")?.name = "${rootProject.name}-Modules-OnlyProxyJoin"
 findProject(":modules:ItemConvertingOnInteraction")?.name = "${rootProject.name}-Modules-ItemConvertingOnInteraction"
+findProject(":modules:MoveBorder")?.name = "${rootProject.name}-Modules-MoveBorder"
 findProject(":velocity-modules:ServerNameToCommand")?.name = "${rootProject.name}-Modules-ServerNameToCommand"
 findProject(":common")?.name = "${rootProject.name}-Common"

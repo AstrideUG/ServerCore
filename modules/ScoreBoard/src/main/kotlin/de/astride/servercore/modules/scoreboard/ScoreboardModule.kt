@@ -9,15 +9,15 @@ import com.google.gson.JsonPrimitive
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
 import net.darkdevelopers.darkbedrock.darkness.general.configs.ConfigData
 import net.darkdevelopers.darkbedrock.darkness.general.configs.gson.GsonConfig
-import net.darkdevelopers.darkbedrock.darkness.general.configs.gson.GsonService
+import net.darkdevelopers.darkbedrock.darkness.general.functions.JsonObject
+import net.darkdevelopers.darkbedrock.darkness.general.functions.save
+import net.darkdevelopers.darkbedrock.darkness.general.functions.toJsonElement
 import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
 import net.darkdevelopers.darkbedrock.darkness.spigot.events.PlayerDisconnectEvent
-import net.darkdevelopers.darkbedrock.darkness.spigot.functions.JsonObject
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.events.listen
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.events.unregister
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.sendScoreBoard
-import net.darkdevelopers.darkbedrock.darkness.spigot.functions.toJsonElement
 import net.darkdevelopers.darkbedrock.darkness.spigot.manager.game.EventsTemplate
 import net.darkdevelopers.darkbedrock.darkness.spigot.messages.SpigotGsonMessages
 import net.darkdevelopers.darkbedrock.darkness.spigot.utils.Utils.players
@@ -49,7 +49,7 @@ class ScoreboardModule : Module, EventsTemplate() {
 
         val configData = ConfigData(description.folder, messagesKey)
         @Suppress("DEPRECATION")
-        val spigotGsonMessages = SpigotGsonMessages(GsonConfig(configData).load())
+        val spigotGsonMessages = SpigotGsonMessages(configData)
         val availableMessages = spigotGsonMessages.availableMessages
 
         displayName = availableMessages["display-name"]?.joinToString("")
@@ -73,7 +73,7 @@ class ScoreboardModule : Module, EventsTemplate() {
                     )
                 )
             )
-            GsonService.save(configData, jsonElement)
+            configData.save(jsonElement)
         }
 
         val plugin: ServerCoreSpigotPlugin = JavaPlugin.getPlugin(ServerCoreSpigotPlugin::class.java)

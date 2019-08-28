@@ -6,8 +6,8 @@ package de.astride.servercore.modules.potioneffects
 
 import com.google.gson.JsonArray
 import de.astride.minecraft.servercore.spigot.ServerCoreSpigotPlugin
-import net.darkdevelopers.darkbedrock.darkness.general.configs.ConfigData
-import net.darkdevelopers.darkbedrock.darkness.general.configs.gson.GsonService.loadAs
+import net.darkdevelopers.darkbedrock.darkness.general.functions.load
+import net.darkdevelopers.darkbedrock.darkness.general.functions.toConfigData
 import net.darkdevelopers.darkbedrock.darkness.general.modules.Module
 import net.darkdevelopers.darkbedrock.darkness.general.modules.ModuleDescription
 import net.darkdevelopers.darkbedrock.darkness.spigot.functions.toWorlds
@@ -33,13 +33,12 @@ class PotionEffectsModule : Module, Listener(JavaPlugin.getPlugin(ServerCoreSpig
 
     override fun load() {
         worlds = try {
-            (loadAs(ConfigData(description.folder, "worlds.json"))
-                ?: JsonArray()).mapNotNull { it.asJsonPrimitive.asString }
+            "worlds".toConfigData(description.folder).load<JsonArray>().mapNotNull { it.asJsonPrimitive.asString }
         } catch (ex: ClassCastException) {
             emptyList()
         }
 
-        effects = (loadAs(ConfigData(description.folder, "effects.json")) ?: JsonArray()).map {
+        effects = "effects".toConfigData(description.folder).load<JsonArray>().map {
             val effect = it.asJsonObject
             val type = try {
                 @Suppress("DEPRECATION")

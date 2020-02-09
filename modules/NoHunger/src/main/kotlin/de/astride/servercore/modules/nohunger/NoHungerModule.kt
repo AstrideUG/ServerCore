@@ -1,5 +1,5 @@
 /*
- * © Copyright - Lars Artmann aka. LartyHD 2019.
+ * © Copyright - Lars Artmann aka. LartyHD 2020.
  */
 
 package de.astride.servercore.modules.nohunger
@@ -29,7 +29,7 @@ class NoHungerModule : Module, EventsTemplate() {
 
     override val description: ModuleDescription = ModuleDescription(
         javaClass.canonicalName,
-        "1.0.1",
+        "1.0.2",
         "Lars Artmann | LartyHD",
         "Block's hunger in the given regions"
     )
